@@ -73,5 +73,5 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 
-nnoremap <silent> <leader> god :GoDef<CR>
-nnoremap <silent> <leader> gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>god :GoDef<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>

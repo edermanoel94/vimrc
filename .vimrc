@@ -1,5 +1,7 @@
 syntax on
 
+filetype plugin indent on
+
 set nocompatible
 set relativenumber
 set noerrorbells
@@ -54,6 +56,9 @@ let g:netrw_browse_split=2
 let g:netrw_banner=0
 let g:netrw_winsize=25
 
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -65,5 +70,8 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 160<CR>
 nnoremap <leader>ps :Rg<SPACE>
 
-nnoremap <silent> <leader>+ :vertical resize +5<CR>
-nnoremap <silent> <leader>- :vertical resize -5<CR>
+nnoremap <silent> <leader>+ :vertical resize +10<CR>
+nnoremap <silent> <leader>- :vertical resize -10<CR>
+
+nnoremap <silent> <leader> god :GoDef<CR>
+nnoremap <silent> <leader> gd :YcmCompleter GoTo<CR>

@@ -36,6 +36,7 @@ Plug 'valloric/youcompleteme'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
+Plug 'ladislas/vim-snippets'
 
 " initialize plugin system
 call plug#end()
@@ -52,13 +53,17 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls -files -oc --excl
 
 let mapleader=" "
 
-let g:netrw_browse_split=0
+let g:netrw_browse_split=2
 let g:netrw_banner=0
 let g:netrw_winsize=25
+
+" UltiSnips
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" Change path from your home
+let g:UltiSnipsSnippetsDir='home/eder/.vim/plugged/vim-snippets/UltiSnips'
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -70,8 +75,12 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>pv :Vexplore<CR>
 nnoremap <leader>ps :Rg<SPACE>
 
+" YouCompleteMe setup
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GoToDefinition<CR>
+nnoremap <silent> <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
+nnoremap <silent> <leader>gr :YcmCompleter GoToReferences<CR>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>

@@ -52,7 +52,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls -files -oc --excl
 
 let mapleader=" "
 
-let g:netrw_browse_split=2
+let g:netrw_browse_split=0
 let g:netrw_banner=0
 let g:netrw_winsize=25
 
@@ -60,17 +60,18 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 160<CR>
+nnoremap <leader>pv :Vexplore<CR>
 nnoremap <leader>ps :Rg<SPACE>
 
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
 nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
 
-nnoremap <silent> <leader>+ :vertical resize 10<CR>
 nnoremap <silent> <leader>- :vertical resize -10<CR>
+nnoremap <silent> <leader>+ :vertical resize +10<CR>

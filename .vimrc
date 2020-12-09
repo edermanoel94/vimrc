@@ -39,7 +39,7 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
 Plug 'ladislas/vim-snippets'
-Plug 'ryanoasis/vim-devicons'
+Plug 'kien/rainbow_parentheses.vim'
 
 " initialize plugin system
 call plug#end()
@@ -88,3 +88,8 @@ nnoremap <silent> <leader>gr :YcmCompleter GoToReferences<CR>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces

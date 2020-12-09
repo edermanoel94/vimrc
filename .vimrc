@@ -18,6 +18,8 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 
+set encoding=UTF-8
+
 set colorcolumn=120
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -37,6 +39,7 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
 Plug 'ladislas/vim-snippets'
+Plug 'ryanoasis/vim-devicons'
 
 " initialize plugin system
 call plug#end()
@@ -49,7 +52,8 @@ if executable('rg')
 endif
 
 let g:ctrlp_use_caching=0
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls -files -oc --exclude-standard']
+
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let mapleader=" "
 
@@ -63,7 +67,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " Change path from your home
-let g:UltiSnipsSnippetsDir='home/eder/.vim/plugged/vim-snippets/UltiSnips'
+let g:UltiSnipsSnippetsDir='/home/eder/.vim/plugged/vim-snippets/UltiSnips'
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>

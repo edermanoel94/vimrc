@@ -67,7 +67,7 @@ let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " Change path from your home
-let g:UltiSnipsSnippetsDir='/home/eder/.vim/plugged/vim-snippets/UltiSnips'
+let g:UltiSnipsSnippetsDir= $HOME . '/.vim/plugged/vim-snippets/UltiSnips'
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -83,8 +83,9 @@ nnoremap <leader>ps :Rg<SPACE>
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
 nnoremap <silent> <leader>gd :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> <leader>gi :YcmCompleter GoToInclude<CR>
-nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
 nnoremap <silent> <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
+nnoremap <leader>pf :YcmCompleter RefactorRename<SPACE>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>

@@ -72,6 +72,9 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+
 nnoremap <leader>u :UndotreeToggle<CR>
 
 nnoremap <leader>pv :Vexplore<CR>
@@ -80,16 +83,21 @@ nnoremap <leader>ps :Rg<SPACE>
 
 " YouCompleteMe setup
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
-nnoremap <silent> <leader>gd :YcmCompleter GoToDefinition<CR>
-nnoremap <silent> <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <silent> <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GetDoc<CR>
 nnoremap <leader>pf :YcmCompleter RefactorRename<SPACE>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
 
 nnoremap <leader>s :%s//gI<Left><Left><Left>
+
+" Git
+
+nnoremap <silent> <leader>gs :G<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gp :Gpush<CR>
 
 " Rainbow
 au VimEnter * RainbowParenthesesToggle

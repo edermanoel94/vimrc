@@ -2,6 +2,7 @@ syntax enable
 
 filetype plugin indent on
 
+set noshowmode
 set cursorline
 set cursorcolumn
 set nocompatible
@@ -19,7 +20,7 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set encoding=utf-8
-
+set laststatus=2
 set colorcolumn=120
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -45,6 +46,8 @@ call plug#end()
 
 colorscheme gruvbox
 set background=dark
+
+let g:airline_theme = 'dark'
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -96,6 +99,7 @@ nnoremap <leader>pf :YcmCompleter RefactorRename<SPACE>
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_always_populate_location_list = 1
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>

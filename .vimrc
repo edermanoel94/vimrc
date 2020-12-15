@@ -64,6 +64,7 @@ let g:netrw_banner=0
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsMappingsToIgnore = ['autocomplete']
 
 let g:UltiSnipsSnippetsDir= $HOME . '/.vim/plugged/vim-snippets/UltiSnips'
 
@@ -92,6 +93,10 @@ nnoremap <silent> <leader>gd :YcmCompleter GetDoc<CR>
 nnoremap <silent> <leader>ty :YcmCompleter GetType<CR>
 nnoremap <leader>pf :YcmCompleter RefactorRename<SPACE>
 
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
 
@@ -113,3 +118,12 @@ au Syntax * RainbowParenthesesLoadBraces
 " Rust
 "
 let g:rustfmt_autosave=1
+
+" GO
+
+let g:go_highlight_operators = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_fmt_command = "goimports"

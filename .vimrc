@@ -2,6 +2,7 @@ syntax enable
 
 filetype plugin indent on
 
+set autoread
 set noshowmode
 set cursorline
 set cursorcolumn
@@ -33,7 +34,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'kien/ctrlp.vim'
-Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme', { 'commit': 'd98f896' }
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
@@ -101,6 +102,8 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_always_populate_location_list = 1
 
+autocmd BufWritePost * YcmForceCompileAndDiagnostics
+
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
 
@@ -120,7 +123,7 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " Rust
-"
+
 let g:rustfmt_autosave=1
 
 " GO
@@ -131,3 +134,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_fmt_command = "goimports"
+
+" JSON format
+
+nnoremap <leader>jq :%!jq .<CR>

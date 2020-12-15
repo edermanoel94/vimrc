@@ -18,6 +18,7 @@ set nobackup
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set encoding=utf-8
 
 set colorcolumn=120
 
@@ -37,7 +38,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
 Plug 'ladislas/vim-snippets'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 
 " initialize plugin system
@@ -64,7 +64,7 @@ let g:netrw_banner=0
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-" Change path from your gI
+
 let g:UltiSnipsSnippetsDir= $HOME . '/.vim/plugged/vim-snippets/UltiSnips'
 
 nnoremap <leader>h :wincmd h<CR>
@@ -82,16 +82,20 @@ nnoremap <leader>pv :Vexplore<CR>
 nnoremap <leader>ps :Rg<SPACE>
 
 " YouCompleteMe setup
+
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gi :YcmCompleter GoImplementation<CR>
 nnoremap <silent> <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <silent> <leader>fm :YcmCompleter Format<CR>
 nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
 nnoremap <silent> <leader>gd :YcmCompleter GetDoc<CR>
+nnoremap <silent> <leader>ty :YcmCompleter GetType<CR>
 nnoremap <leader>pf :YcmCompleter RefactorRename<SPACE>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
 
-nnoremap <leader>s :%s//gI<Left><Left><Left>
+nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
 
 " Git
 
@@ -100,10 +104,12 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
 
 " Rainbow
+"
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " Rust
+"
 let g:rustfmt_autosave=1

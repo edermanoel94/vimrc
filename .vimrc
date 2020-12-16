@@ -89,7 +89,7 @@ nnoremap <leader>ps :Rg<SPACE>
 " YouCompleteMe setup
 
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
-nnoremap <silent> <leader>gi :YcmCompleter GoImplementation<CR>
+nnoremap <silent> <leader>gi :YcmCompleter GoToImplementation<CR>
 nnoremap <silent> <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <silent> <leader>fm :YcmCompleter Format<CR>
 nnoremap <silent> <leader>fx :YcmCompleter FixIt<CR>
@@ -138,3 +138,4 @@ let g:go_fmt_command = "goimports"
 " JSON format
 
 nnoremap <leader>jq :%!jq .<CR>
+nnoremap <leader>ji :%!jq -rc .<CR>

@@ -1,4 +1,4 @@
-syntax enable
+syntax on
 
 filetype plugin indent on
 
@@ -34,7 +34,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'kien/ctrlp.vim'
-Plug 'valloric/youcompleteme', { 'commit': 'd98f896' }
+Plug 'valloric/youcompleteme'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
@@ -50,18 +50,28 @@ set background=dark
 
 let g:airline_theme = 'dark'
 
+" RIP Grep
+
 if executable('rg')
     let g:rg_derive_root='true'
 endif
+
+nnoremap <leader>ps :Rg<SPACE>
+
+" CTRL+P
 
 let g:ctrlp_use_caching=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let mapleader=" "
 
+ " Netrw
+
 let g:netrw_browse_split=4
 let g:netrw_winsize=25
 let g:netrw_banner=0
+
+nnoremap <leader>pv :Vexplore<CR>
 
 " UltiSnips
 
@@ -72,21 +82,32 @@ let g:UltiSnipsMappingsToIgnore = ['autocomplete']
 
 let g:UltiSnipsSnippetsDir= $HOME . '/.vim/plugged/vim-snippets/UltiSnips'
 
+" Miscs
+
+" replace all with case sensitive
+nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
+
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+
+" Window management
+
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
-nnoremap <leader>q :q<CR>
-nnoremap <leader>w :w<CR>
+nnoremap <silent> <leader>- :vertical resize -10<CR>
+nnoremap <silent> <leader>+ :vertical resize +10<CR>
+
+" Undo Tree
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
-nnoremap <leader>pv :Vexplore<CR>
-
-nnoremap <leader>ps :Rg<SPACE>
-
 " YouCompleteMe setup
+
+" on save current buffer, force Ycm diagnostics
+autocmd BufWritePost * YcmForceCompileAndDiagnostics
 
 nnoremap <silent> <leader>gt :YcmCompleter GoTo<CR>
 nnoremap <silent> <leader>gi :YcmCompleter GoToImplementation<CR>
@@ -102,13 +123,6 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_always_populate_location_list = 1
 
-autocmd BufWritePost * YcmForceCompileAndDiagnostics
-
-nnoremap <silent> <leader>- :vertical resize -10<CR>
-nnoremap <silent> <leader>+ :vertical resize +10<CR>
-
-nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
-
 " Git
 
 nnoremap <silent> <leader>gs :G<CR>
@@ -116,7 +130,7 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
 
 " Rainbow
-"
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare

@@ -50,20 +50,21 @@ set background=dark
 
 let g:airline_theme = 'dark'
 
+let mapleader=" "
+
 " RIP Grep
 
 if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-nnoremap <leader>ps :Rg<SPACE>
+nnoremap <leader>rg :Rg<SPACE>
 
 " CTRL+P
 
 let g:ctrlp_use_caching=0
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-let mapleader=" "
 
  " Netrw
 

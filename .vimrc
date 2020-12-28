@@ -34,7 +34,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'kien/ctrlp.vim'
-Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme', { 'commit': 'd98f896' }
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
@@ -84,12 +84,14 @@ let g:UltiSnipsMappingsToIgnore = ['autocomplete']
 let g:UltiSnipsSnippetsDir= $HOME . '/.vim/plugged/vim-snippets/UltiSnips'
 
 " Miscs
+nnoremap <silent> <leader>t :term<CR>
 
 " replace all with case sensitive
 nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
 
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>a :a<CR>
 
 " Window management
 

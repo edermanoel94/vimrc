@@ -1,6 +1,10 @@
+set nocompatible
+
 syntax on
 
-filetype plugin indent on
+filetype  on
+filetype plugin on
+filetype indent on
 
 set autoread
 set noshowmode
@@ -34,13 +38,12 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'kien/ctrlp.vim'
-Plug 'valloric/youcompleteme', { 'commit': 'd98f896' }
+Plug 'valloric/youcompleteme'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'SirVer/ultisnips'
 Plug 'ladislas/vim-snippets'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'rust-lang/rust.vim'
 
 " initialize plugin system
 call plug#end()
@@ -91,14 +94,8 @@ nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
 
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>a :a<CR>
 
 " Window management
-
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
@@ -125,6 +122,7 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_always_populate_location_list = 1
+let g:ycm_cache_omnifunc = 0
 
 " Git
 
@@ -138,10 +136,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
-" Rust
-
-let g:rustfmt_autosave=1
 
 " GO
 

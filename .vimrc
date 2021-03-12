@@ -6,8 +6,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-autocmd FileType vim setlocal foldmethod=marker
-
 set autoread
 set hidden
 set noerrorbells
@@ -28,7 +26,7 @@ set hlsearch
 set encoding=utf-8
 set colorcolumn=120
 set cmdheight=2
-set updatetime=300
+set updatetime=100
 
 set shortmess+=c
 
@@ -44,14 +42,16 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'jremmen/vim-ripgrep'
-Plug 'preservim/nerdcommenter'
 Plug 'tomasr/molokai'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-utils/vim-man'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'voldikss/vim-floaterm'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
+Plug 'honza/vim-snippets'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -63,22 +63,39 @@ colorscheme molokai
 
 let mapleader=" "
 
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" Float Term
+
+let g:floaterm_keymap_new = '<leader>ft'
+let g:floaterm_keymap_toggle = '<leader>t'
+
+let g:floaterm_wintype = 'float'
+let g:floaterm_position = 'center'
+
+" Git Gutter
+
+let g:gitgutter_async=0
+let g:gitgutter_max_signs=2000
+
 " COC
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+      let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
 
+let g:coc_snippet_next = '<tab>'
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
@@ -194,20 +211,33 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" RIP Grep
+let g:coc_global_extensions = ['coc-solargraph']
 
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
+" COC Snippets
 
-nnoremap <leader>rg :Rg<SPACE>
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
 
-" CTRL+P
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
 
-let g:ctrlp_use_caching=0
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
 
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+" FZF
+
+nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files!' : ':GFiles! --exclude-standard --others --cached')."\<cr>"
+
+nnoremap <leader>rg :Rg<CR>
  " Netrw
 
 let g:netrw_browse_split=4
@@ -217,9 +247,11 @@ let g:netrw_banner=0
 nnoremap <leader>pv :Vexplore<CR>
 
 " Miscs
-nnoremap <silent> <leader>t :term<CR>
+
+nnoremap <leader>b :e #<CR>
 
 " replace all with case sensitive
+
 nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
 
 nnoremap <leader>q :q<CR>

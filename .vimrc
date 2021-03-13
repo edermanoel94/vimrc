@@ -59,18 +59,21 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 let g:airline_theme = 'dark'
+
 colorscheme molokai
 
 let mapleader=" "
 
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 " Float Term
 
 let g:floaterm_keymap_new = '<leader>ft'
 let g:floaterm_keymap_toggle = '<leader>t'
+let g:floaterm_autoclose = 1
 
-let g:floaterm_wintype = 'float'
-let g:floaterm_position = 'center'
+
+command! IRB FloatermNew irb
+command! PY FloatermNew python3
+command! TOP FloatermNew ytop
 
 " Git Gutter
 
@@ -94,6 +97,12 @@ function! s:check_back_space() abort
     endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -237,7 +246,10 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files!' : ':GFiles! --exclude-standard --others --cached')."\<cr>"
 
-nnoremap <leader>rg :Rg<CR>
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+nnoremap <leader>rg :Rg!<CR>
+
  " Netrw
 
 let g:netrw_browse_split=4

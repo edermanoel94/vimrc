@@ -1,4 +1,12 @@
 {
+  "codeLens.enable": true,
+  "solargraph.useBundler": true,
+  "solargraph.externalServer": {
+    "host": "localhost",
+    "port": 7658
+  },
+  "solargraph.transport": "external",
+  "solargraph.checkGemVersion": false,
   "diagnostic.checkCurrentLine": true,
   "languageserver": {
     "ccls": {

@@ -52,6 +52,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
+Plug 'udalov/kotlin-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -71,14 +72,17 @@ let g:floaterm_keymap_toggle = '<leader>t'
 let g:floaterm_autoclose = 1
 
 
-command! IRB FloatermNew irb
-command! PY FloatermNew python3
-command! TOP FloatermNew ytop
+command! IRB FloatermNew --height=0.8 --width=0.8 --name=Ruby irb
+command! PY  FloatermNew --height=0.8 --width=0.8 --name=Python python3
+command! TOP FloatermNew --height=0.8 --width=0.8 --name=YTOP ytop
+command! GIT FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
 
 " Git Gutter
 
 let g:gitgutter_async=0
 let g:gitgutter_max_signs=2000
+let g:gitgutter_highlight_lines=1
 
 " COC
 

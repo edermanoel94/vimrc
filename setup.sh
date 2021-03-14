@@ -5,7 +5,7 @@ echo "Install some packages on APT"
 sudo apt update >> /dev/null 2>&1 && sudo apt upgrade -y >> /dev/null 2>&1 && \
     sudo apt install -y cmake make curl build-essential \
     git fzf ripgrep clang jq net-tools \
-    python3-pip python3-dev gdb >> /dev/null 2>&1 && \
+    python3-pip python3-dev gdb make libxt-dev libgtk-3-dev libpython3-dev >> /dev/null 2>&1 && \
     sudo apt autoremove -y >> /dev/null 2>&1 && \
     sudo apt autoclean >> /dev/null 2>&1
 

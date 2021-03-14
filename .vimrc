@@ -74,8 +74,14 @@ let g:floaterm_autoclose = 1
 
 command! IRB FloatermNew --height=0.8 --width=0.8 --name=Ruby irb
 command! PY  FloatermNew --height=0.8 --width=0.8 --name=Python python3
-command! TOP FloatermNew --height=0.8 --width=0.8 --name=YTOP ytop
-command! GIT FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+
+if executable('ytop')
+    command! TOP FloatermNew --height=0.8 --width=0.8 --autoclose=2 --name=YTOP ytop
+else
+    command! TOP FloatermNew --height=0.8 --width=0.8 ---autoclose=2 --name=HTOP htop
+endif
+
+command! LG FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
 command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
 
 " Git Gutter

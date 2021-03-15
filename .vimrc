@@ -33,17 +33,16 @@ set shortmess+=c
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
+    " Recently vim can merge signcolumn and number column into one
+    set signcolumn=number
 else
-  set signcolumn=yes
+    set signcolumn=yes
 endif
 
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'tomasr/molokai'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-utils/vim-man'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -67,7 +66,6 @@ let mapleader=" "
 
 " Float Term
 
-let g:floaterm_keymap_new = '<leader>ft'
 let g:floaterm_keymap_toggle = '<leader>t'
 let g:floaterm_autoclose = 1
 
@@ -86,9 +84,7 @@ command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
 
 " Git Gutter
 
-let g:gitgutter_async=0
-let g:gitgutter_max_signs=2000
-let g:gitgutter_highlight_lines=1
+let g:gitgutter_highlight_linenrs=1
 
 " COC
 
@@ -260,14 +256,6 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 
 nnoremap <leader>rg :Rg!<CR>
 
- " Netrw
-
-let g:netrw_browse_split=4
-let g:netrw_winsize=25
-let g:netrw_banner=0
-
-nnoremap <leader>pv :Vexplore<CR>
-
 " Miscs
 
 nnoremap <leader>b :e #<CR>
@@ -287,12 +275,6 @@ nnoremap <silent> <leader>+ :vertical resize +10<CR>
 " Undo Tree
 
 nnoremap <leader>u :UndotreeToggle<CR>
-
-" Git
-
-nnoremap <silent> <leader>gs :G<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gp :Gpush<CR>
 
 " Rainbow
 

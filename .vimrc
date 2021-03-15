@@ -82,6 +82,8 @@ endif
 command! LG FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
 command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
 
+nnoremap <leader>lg :LG<CR>
+
 " Git Gutter
 
 let g:gitgutter_highlight_linenrs=1

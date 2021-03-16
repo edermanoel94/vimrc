@@ -268,14 +268,17 @@ augroup END
 
 " FZF
 
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nnoremap <C-p> :Files<CR>
+nnoremap <C-b> :Buffers<CR>
+nnoremap <expr> <C-g> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-nnoremap <leader>rg :Rg<CR>
+nnoremap <C-f> :Rg<CR>
 
 " Miscs
 
+" In case of <C-6> dons't work
 nnoremap <leader>b :e #<CR>
 
 " replace all with case sensitive

@@ -260,11 +260,6 @@ let g:netrw_banner=0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
-
 
 " FZF
 
@@ -310,3 +305,4 @@ if executable('jq')
     nnoremap <leader>jq :%!jq .<CR>
     nnoremap <leader>ji :%!jq -rc .<CR>
 endif
+

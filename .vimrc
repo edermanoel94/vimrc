@@ -51,6 +51,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
+Plug 'vim-test/vim-test'
 Plug 'udalov/kotlin-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -68,7 +69,8 @@ let mapleader=" "
 
 let g:floaterm_keymap_toggle = '<leader>t'
 let g:floaterm_autoclose = 1
-
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
 
 command! IRB FloatermNew --height=0.8 --width=0.8 --name=Ruby irb
 command! PY  FloatermNew --height=0.8 --width=0.8 --name=Python python3
@@ -306,3 +308,18 @@ if executable('jq')
     nnoremap <leader>ji :%!jq -rc .<CR>
 endif
 
+" Test
+
+if has('nvim')
+  let test#strategy='neovim'
+else
+  let test#strategy='vimterminal'
+endif
+
+let test#ruby#rspec#executable='docker-compose exec web bundle exec rspec -f d'
+
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-a> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-v> :TestVisit<CR>

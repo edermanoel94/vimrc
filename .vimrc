@@ -85,6 +85,7 @@ endif
 
 command! LG FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
 command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
+command! NODE  FloatermNew --height=0.8 --width=0.8 --name=Node node
 
 nnoremap <leader>lg :LG<CR>
 

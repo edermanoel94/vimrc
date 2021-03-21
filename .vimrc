@@ -279,7 +279,7 @@ nnoremap <C-f> :Rg
 " RG
 
 " Search for specified method in Ruby
-nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 
 " Miscs

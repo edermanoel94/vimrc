@@ -276,6 +276,12 @@ command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-hea
 
 nnoremap <C-f> :Rg
 
+" RG
+
+" Search for specified method in Ruby
+nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+
 " Miscs
 
 " In case of <C-6> dons't work

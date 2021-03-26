@@ -1,28 +1,24 @@
 #!/usr/bin/env bash
 
-echo "Install some packages on APT"
-
-sudo apt update >> /dev/null 2>&1 && sudo apt upgrade -y >> /dev/null 2>&1 && \
+sudo apt update   && sudo apt upgrade -y   && \
     sudo apt install -y cmake make curl build-essential \
     git fzf ripgrep clang jq net-tools \
-    python3-pip python3-dev gdb make libxt-dev libgtk-3-dev libpython3-dev >> /dev/null 2>&1 && \
-    sudo apt autoremove -y >> /dev/null 2>&1 && \
-    sudo apt autoclean >> /dev/null 2>&1
+    python3-pip python3-dev gdb make libxt-dev libgtk-3-dev libpython3-dev   && \
+    sudo apt autoremove -y   && \
+    sudo apt autoclean  
 
-sudo add-apt-repository ppa:lazygit-team/release -y >> /dev/null 2>&1 && \
-    sudo apt-get update >> /dev/null 2>&1 && \
-    sudo apt-get install lazygit >> /dev/null 2>&1
-
-echo "Install vim-plug"
+sudo add-apt-repository ppa:lazygit-team/release -y   && \
+    sudo apt-get update   && \
+    sudo apt-get install lazygit  
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim >> /dev/null 2>&1
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim  
 
-if which node >> /dev/null 2>&1
+if which node  
 then
     echo "Node is installed, skipping..."
 else
-    curl -sL install-node.now.sh/lts | bash
+    echo "Node is not installed, please install" || exit
 fi
 
 echo "Moving .vimrc to your home path"

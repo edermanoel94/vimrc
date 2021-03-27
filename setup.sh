@@ -18,12 +18,12 @@ if which node
 then
     echo "Node is installed, skipping..."
 else
-    echo "Node is not installed, please install" || exit
+    echo "Node is not installed, please install" || exit 1
 fi
 
 echo "Moving .vimrc to your home path"
 
-cp ./.vimrc ~/
-cp ./coc-settings.json ~/.vim
+cp ./.vimrc ~/ || exit 1
+cp ./coc-settings.json ~/.vim || exit 1
 
 echo "Now, open your ~/.vimrc with vim and run :PlugInstall"

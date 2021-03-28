@@ -110,7 +110,7 @@ nnoremap <leader>b :e #<CR>
 
 " replace all with case sensitive
 
-nnoremap <leader>s :%s/:execute expand('<cword>')//gI<Left><Left><Left><Left>
+nnoremap <leader>s :%s/<C-r><C-w>//gI<Left><Left><Left>
 
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>

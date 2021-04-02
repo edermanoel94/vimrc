@@ -69,7 +69,8 @@ let mapleader=" "
 
 " Float Term
 
-let g:floaterm_keymap_toggle = '<leader>t'
+let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_keymap_new = '<leader>tn'
 let g:floaterm_autoclose = 1
 let g:floaterm_width=0.8
 let g:floaterm_height=0.8
@@ -83,9 +84,13 @@ else
     command! TOP FloatermNew --height=0.8 --width=0.8 ---autoclose=2 --name=HTOP htop
 endif
 
-command! LG FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
-command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
+command! LG    FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+command! KL    FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
 command! NODE  FloatermNew --height=0.8 --width=0.8 --name=Node node
+
+if executable('wuzz')
+    command! WUZZ  FloatermNew --height=0.8 --width=0.8 --name=Wuzz wuzz
+endif
 
 nnoremap <leader>lg :LG<CR>
 

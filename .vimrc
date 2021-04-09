@@ -19,8 +19,6 @@ set smartcase
 set noswapfile
 set nobackup
 set nowritebackup
-set undodir=~/.vim/undodir
-set undofile
 set incsearch
 set hlsearch
 set encoding=utf-8
@@ -40,12 +38,9 @@ Plug 'vim-utils/vim-man'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
 Plug 'vim-test/vim-test'
-Plug 'alepez/vim-gtest'
-Plug 'cdelledonne/vim-cmake'
 Plug 'udalov/kotlin-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -280,7 +275,6 @@ nnoremap <C-f> :Rg
 " Search for specified method in Ruby
 nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-
 " Miscs
 
 " In case of <C-6> dons't work
@@ -297,10 +291,6 @@ nnoremap <leader>w :w<CR>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
-
-" Undo Tree
-
-nnoremap <leader>u :UndotreeToggle<CR>
 
 " Rainbow
 
@@ -331,16 +321,3 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-v> :TestVisit<CR>
-
-" CMake
-
-let g:cmake_link_compile_commands = 1
-
-nmap <leader>cg :CMakeGenerate<cr>
-nmap <leader>cb :CMakeBuild<cr>
-
-" GTest
-
-" let g:gtest#gtest_command = "path/to/test/executable"
-
-" nmap <leader>gt :GTestRunUnderCursor<cr>

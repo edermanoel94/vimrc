@@ -30,15 +30,6 @@ set updatetime=100
 
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-    " Recently vim can merge signcolumn and number column into one
-    set signcolumn=number
-else
-    set signcolumn=yes
-endif
-
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin('~/.vim/plugged')
@@ -53,6 +44,8 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
 Plug 'vim-test/vim-test'
+Plug 'alepez/vim-gtest'
+Plug 'cdelledonne/vim-cmake'
 Plug 'udalov/kotlin-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -84,7 +77,10 @@ else
     command! TOP FloatermNew --height=0.8 --width=0.8 ---autoclose=2 --name=HTOP htop
 endif
 
-command! LG    FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+if executable('lazygit')
+    command! LG    FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+endif
+
 command! KL    FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
 command! NODE  FloatermNew --height=0.8 --width=0.8 --name=Node node
 
@@ -110,11 +106,12 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 function! s:check_back_space() abort
-      let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 let g:coc_snippet_next = '<tab>'
+let g:coc_disable_transparent_cursor = 1
 
 if has('nvim')
     inoremap <silent><expr> <c-space> coc#refresh()
@@ -135,7 +132,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -268,9 +265,6 @@ nnoremap <leader>pv :Vexplore<CR>
 let g:netrw_browse_split=4
 let g:netrw_winsize=25
 let g:netrw_banner=0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
 
 " FZF
 
@@ -278,12 +272,11 @@ nnoremap <C-p> :Files<CR>
 nnoremap <C-b> :Buffers<CR>
 nnoremap <expr> <C-g> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
+" RG
+
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 nnoremap <C-f> :Rg
-
-" RG
-
 " Search for specified method in Ruby
 nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
@@ -295,7 +288,7 @@ nnoremap <leader>b :e #<CR>
 
 " replace all with case sensitive
 
-nnoremap <leader>s :%s///gI<Left><Left><Left><Left>
+noremap <leader>s :%s/<C-r><C-w>//gI<Left><Left><Left>
 
 nnoremap <leader>q :q<CR>
 nnoremap <leader>w :w<CR>
@@ -338,3 +331,16 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-v> :TestVisit<CR>
+
+" CMake
+
+let g:cmake_link_compile_commands = 1
+
+nmap <leader>cg :CMakeGenerate<cr>
+nmap <leader>cb :CMakeBuild<cr>
+
+" GTest
+
+" let g:gtest#gtest_command = "path/to/test/executable"
+
+" nmap <leader>gt :GTestRunUnderCursor<cr>

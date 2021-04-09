@@ -17,8 +17,6 @@ set nu relativenumber
 set nowrap
 set smartcase
 set noswapfile
-set undodir=~/.vim/undodir
-set undofile
 set incsearch
 set hlsearch
 set encoding=utf-8
@@ -37,7 +35,6 @@ Plug 'vim-utils/vim-man'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'kien/rainbow_parentheses.vim'
 
@@ -59,7 +56,6 @@ let g:floaterm_autoclose = 1
 let g:floaterm_width=0.8
 let g:floaterm_height=0.8
 
-command! IRB FloatermNew --height=0.8 --width=0.8 --name=Ruby irb
 command! PY  FloatermNew --height=0.8 --width=0.8 --name=Python python3
 
 if executable('ytop')
@@ -68,11 +64,14 @@ else
     command! TOP FloatermNew --height=0.8 --width=0.8 ---autoclose=2 --name=HTOP htop
 endif
 
-command! LG FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
-command! KL  FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
-command! NODE  FloatermNew --height=0.8 --width=0.8 --name=Node node
+if executable('lazygit')
+    command! LG FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+    nnoremap <leader>lg :LG<CR>
+endif
 
-nnoremap <leader>lg :LG<CR>
+if executable('node')
+    command! NODE  FloatermNew --height=0.8 --width=0.8 --name=Node node
+endif
 
 " Netrw
 
@@ -96,9 +95,6 @@ nnoremap <expr> <C-g> (len(system('git rev-parse')) ? ':Files' : ':GFiles --excl
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 nnoremap <C-f> :Rg
-
-" Search for specified method in Ruby
-nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " Search for specified method in C++ Header
 " nnoremap <leader>mr :Rg --glob '*.hpp' --word-regexp 'type\s\w+\([\w,\s]*\);$'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
@@ -126,10 +122,6 @@ nnoremap <leader>gr :execute "tjump " . expand("<cword>")<CR>
 
 nnoremap <silent> <leader>- :vertical resize -10<CR>
 nnoremap <silent> <leader>+ :vertical resize +10<CR>
-
-" Undo Tree
-
-nnoremap <leader>u :UndotreeToggle<CR>
 
 " Rainbow
 

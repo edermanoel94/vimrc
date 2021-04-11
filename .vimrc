@@ -41,6 +41,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
 Plug 'vim-test/vim-test'
+Plug 'alepez/vim-gtest'
+Plug 'cdelledonne/vim-cmake'
 Plug 'udalov/kotlin-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -130,6 +132,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf :Format<cr>
+nmap <silent> go :OR<cr>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -215,23 +219,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Mappings for CoCList
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-python']
-
+let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-python', 'coc-go']
 
 " COC Snippets
 
@@ -275,7 +264,12 @@ nnoremap <C-f> :Rg
 " Search for specified method in Ruby
 nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
+
 " Miscs
+
+" PDF to Text
+
+:command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> - | fmt -csw78
 
 " In case of <C-6> dons't work
 nnoremap <leader>b :e #<CR>
@@ -321,3 +315,16 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-v> :TestVisit<CR>
+
+" CMake
+
+let g:cmake_link_compile_commands = 1
+
+nmap <leader>cg :CMakeGenerate<cr>
+nmap <leader>cb :CMakeBuild<cr>
+
+" GTest
+
+" let g:gtest#gtest_command = "path/to/test/executable"
+
+" nmap <leader>gt :GTestRunUnderCursor<cr>

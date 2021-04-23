@@ -75,7 +75,11 @@ else
 endif
 
 if executable('lazygit')
-    command! LG    FloatermNew --height=0.8 --width=0.8 --name=Lazygit lazygit
+    command! LG    FloatermNew --height=0.9 --width=0.9 --name=Lazygit lazygit
+endif
+
+if executable('lazydocker')
+    command! LD    FloatermNew --height=0.9 --width=0.9 --name=Lazydocker lazydocker
 endif
 
 command! KL    FloatermNew --height=0.8 --width=0.8 --name=Kotlin kotlin
@@ -86,6 +90,7 @@ if executable('wuzz')
 endif
 
 nnoremap <leader>lg :LG<CR>
+nnoremap <leader>ld :LD<CR>
 
 " Git Gutter
 
@@ -261,9 +266,18 @@ nnoremap <expr> <C-g> (len(system('git rev-parse')) ? ':Files' : ':GFiles --excl
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 nnoremap <C-f> :Rg
-" Search for specified method in Ruby
-nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
+" Search for function in Ruby
+
+nnoremap <leader>rf :Rg --glob '*.rb' --word-regexp 'def \w*\([\w,\s]*\)'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Search for class in ruby
+
+nnoremap <leader>rc :Rg --glob '*.rb' --word-regexp 'class \w*'<Left><Left><Left><Left>
+
+" Search for module in ruby
+
+nnoremap <leader>rm :Rg --glob '*.rb' --word-regexp '^[\:\:]?[\w\:\:]*'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " Miscs
 
@@ -272,9 +286,10 @@ nnoremap <leader>mr :Rg --glob '*.rb' --word-regexp 'def \w+\([\w,\s]*\)'<Left><
 :command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> - | fmt -csw78
 
 " In case of <C-6> dons't work
+
 nnoremap <leader>b :e #<CR>
 
-" replace all with case sensitive
+" Replace all with case sensitive
 
 noremap <leader>s :%s/<C-r><C-w>//gI<Left><Left><Left>
 
@@ -315,16 +330,3 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-v> :TestVisit<CR>
-
-" CMake
-
-let g:cmake_link_compile_commands = 1
-
-nmap <leader>cg :CMakeGenerate<cr>
-nmap <leader>cb :CMakeBuild<cr>
-
-" GTest
-
-" let g:gtest#gtest_command = "path/to/test/executable"
-
-" nmap <leader>gt :GTestRunUnderCursor<cr>

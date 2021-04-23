@@ -277,7 +277,7 @@ nnoremap <leader>rc :Rg --glob '*.rb' --word-regexp 'class \w*'<Left><Left><Left
 
 " Search for module in ruby
 
-nnoremap <leader>rm :Rg --glob '*.rb' --word-regexp '^[\:\:]?[\w\:\:]*'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap <leader>rm :Rg --glob '*.rb' --word-regexp '\b\w*(?:::\w*)*\b'<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " Miscs
 
@@ -323,7 +323,7 @@ else
   let test#strategy='vimterminal'
 endif
 
-let test#ruby#rspec#executable='docker-compose exec web bundle exec rspec -f d'
+let test#ruby#rspec#executable='docker-compose exec web bundle exec rspec'
 
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>

@@ -37,6 +37,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-utils/vim-man'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'voldikss/vim-floaterm'
 Plug 'vim-airline/vim-airline'
 Plug 'honza/vim-snippets'
@@ -139,6 +140,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gf :Format<cr>
 nmap <silent> go :OR<cr>
+nmap <silent> gz :Fold<cr>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -225,7 +227,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 
-let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-python', 'coc-go']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-python', 'coc-go', 'coc-kotlin']
 
 " COC Snippets
 
@@ -330,3 +332,9 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-a> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-v> :TestVisit<CR>
+
+func! Test() 
+    let abspath = expand('%:p')
+    let filename = expand('%:t')
+endfunc
+

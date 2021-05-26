@@ -24,7 +24,7 @@ set hlsearch
 set encoding=utf-8
 set colorcolumn=120
 set cmdheight=2
-set updatetime=100
+set updatetime=300
 
 set shortmess+=c
 
@@ -227,7 +227,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 
-let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-python', 'coc-go', 'coc-kotlin']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-go', 'coc-kotlin']
 
 " COC Snippets
 
